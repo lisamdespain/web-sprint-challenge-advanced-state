@@ -1,5 +1,7 @@
 // ❗ You don't need to add extra action creators to achieve MVP
 import * as types from './action-types'
+import axios from 'axios'
+
 export function moveClockwise() { 
   return {
     type: types.MOVE_CLOCKWISE
@@ -10,11 +12,27 @@ export function moveCounterClockwise() {
   type: types.MOVE_COUNTERCLOCKWISE
 }
 }
-export function selectAnswer() { }
+export function selectAnswer(id) {
+  return {
+    type: types.SET_SELECTED_ANSWER,
+    payload: id
+  }
+}
 
 export function setMessage() { }
 
-export function setQuiz() { }
+export function setQuiz() {
+  return function (dispatch){
+    axios.get("http://localhost:9000/api/quiz/next")
+    .then(res =>{
+      console.log("payload: ", res.data)
+      dispatch({type:types.SET_QUIZ_INTO_STATE, payload: res.data})
+    })
+    .catch(err =>{
+      
+    })
+  }
+}
 
 export function inputChange() { }
 
