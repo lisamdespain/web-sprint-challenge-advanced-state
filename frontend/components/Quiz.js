@@ -20,13 +20,13 @@ export function Quiz(props) {
               <div className={selectedAnswer ? 'answer selected' : 'answer'} >
                 {quiz.answers[0].text}
                 <button onClick={() => selectAnswer(quiz.answers[0].answer_id)}>
-                {selectedAnswer ? 'SELECTED' : 'select'}</button>
+                {selectedAnswer === quiz.answers[0].answer_id ? 'SELECTED' : 'select'}</button>
                  
               </div>
 
               <div className={selectedAnswer ? 'answer selected' : 'answer'}>
               {quiz.answers[1].text}
-                <button onClick={() => selectAnswer(quiz.answers[1].answer_id)}>{selectedAnswer ? 'SELECTED' : 'select'}</button>
+                <button onClick={() => selectAnswer(quiz.answers[1].answer_id)}>{selectedAnswer === quiz.answers[1].answer_id ? 'SELECTED' : 'select'}</button>
                 
               </div>
             </div>
