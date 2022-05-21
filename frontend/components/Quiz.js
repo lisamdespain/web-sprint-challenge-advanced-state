@@ -7,8 +7,13 @@ export function Quiz(props) {
     fetchQuiz()
   }, [])
   const { selectAnswer, selectedAnswer, fetchQuiz, postAnswer, quiz } = props;
+  
   console.log(props)
   return (
+    
+  
+    
+  
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
@@ -30,8 +35,8 @@ export function Quiz(props) {
                 
               </div>
             </div>
-
-            <button id="submitAnswerBtn" onClick={() => postAnswer(quiz.quiz_id, selectedAnswer)}>Submit answer</button>
+             
+            <button disabled={selectedAnswer ? false : true} id="submitAnswerBtn" onClick={() => postAnswer(quiz.quiz_id, selectedAnswer)}>Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }

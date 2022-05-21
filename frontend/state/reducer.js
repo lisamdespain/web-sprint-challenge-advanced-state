@@ -82,7 +82,7 @@ function infoMessage(state = initialMessageState, action) {
     case types.SET_INFO_MESSAGE:
     return action.payload
  default: 
-  return ""
+  return state
   }
 }
 
