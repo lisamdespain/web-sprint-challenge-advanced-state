@@ -4,9 +4,9 @@ import * as actions from "../state/action-creators"
 
 export function Quiz(props) {
   useEffect(() => {
-    setQuiz()
+    fetchQuiz()
   }, [])
-  const { selectAnswer, selectedAnswer, setQuiz, postAnswer, quiz } = props;
+  const { selectAnswer, selectedAnswer, fetchQuiz, postAnswer, quiz } = props;
   console.log(props)
   return (
     <div id="wrapper">
@@ -17,21 +17,21 @@ export function Quiz(props) {
             <h2>{quiz.question}</h2>
 
             <div id="quizAnswers">
-              <div className={selectedAnswer ? 'answer selected' : 'answer'} >
+              <div className={selectedAnswer === quiz.answers[0].answer_id ? 'answer selected' : 'answer'} >
                 {quiz.answers[0].text}
                 <button onClick={() => selectAnswer(quiz.answers[0].answer_id)}>
                 {selectedAnswer === quiz.answers[0].answer_id ? 'SELECTED' : 'select'}</button>
                  
               </div>
 
-              <div className={selectedAnswer ? 'answer selected' : 'answer'}>
+              <div className={selectedAnswer === quiz.answers[1].answer_id ? 'answer selected' : 'answer'}>
               {quiz.answers[1].text}
                 <button onClick={() => selectAnswer(quiz.answers[1].answer_id)}>{selectedAnswer === quiz.answers[1].answer_id ? 'SELECTED' : 'select'}</button>
                 
               </div>
             </div>
 
-            <button id="submitAnswerBtn" onClick={postAnswer}>Submit answer</button>
+            <button id="submitAnswerBtn" onClick={() => postAnswer(quiz.quiz_id, selectedAnswer)}>Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
