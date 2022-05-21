@@ -27,7 +27,9 @@ export function setMessage(message) {
 }
 
 export function setQuiz() {
-  postQuiz()
+ return {
+   type: types.SET_QUIZ_INTO_STATE
+ }
 }
 
 export function inputChange({id, value}) {
@@ -37,7 +39,10 @@ export function inputChange({id, value}) {
   }
 }
 
-export function resetForm() { }
+export function resetForm() {
+  return {
+    type: types.RESET_FORM}
+}
 
 // ❗ Async action creators
 // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
@@ -78,11 +83,21 @@ export function postAnswer(quizId, answerId) {
 
 
       
-export function postQuiz() {
+export function postQuiz(question, trueAnswer, falseAnswer) {
   return function (dispatch) {
     // On successful POST:
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
+    const newQuiz = { question_text: question, true_answer_text: trueAnswer, false_answer_text: falseAnswer}
+    axios.post("http://localhost:9000/api/quiz/new", newQuiz)
+    .then(res =>{
+      console.log("post message: ", res)
+      dispatch(setMessage(`Congrats ${res.data.question} is a great question!`))
+      dispatch(resetForm())
+    })
+    .catch(err =>{
+      console.log(err.statusText)
+    })
   }
 }
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

@@ -4,7 +4,7 @@ import * as actionCreators from '../state/action-creators'
 
 export function Form(props) {
   console.log(props)
- const {setQuiz, inputChange, form} = props;
+ const {postQuiz, inputChange, form} = props;
   const onChange = evt => {
     console.log(evt)
     const {id, value} = evt.target
@@ -13,7 +13,7 @@ export function Form(props) {
 
   const onSubmit = evt => {
     evt.preventDefault()
-    setQuiz() 
+    postQuiz(form.newQuestion, form.newTrueAnswer, form.newFalseAnswer) 
     
   }
 
