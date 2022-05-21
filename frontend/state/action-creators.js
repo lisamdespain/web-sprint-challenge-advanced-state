@@ -92,7 +92,7 @@ export function postQuiz(question, trueAnswer, falseAnswer) {
     axios.post("http://localhost:9000/api/quiz/new", newQuiz)
     .then(res =>{
       console.log("post message: ", res)
-      dispatch(setMessage(`Congrats ${res.data.question} is a great question!`))
+      dispatch(setMessage(`Congrats: "${res.data.question}" is a great question!`))
       dispatch(resetForm())
     })
     .catch(err =>{
