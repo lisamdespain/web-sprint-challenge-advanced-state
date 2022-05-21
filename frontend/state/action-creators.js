@@ -19,13 +19,23 @@ export function selectAnswer(id) {
   }
 }
 
-export function setMessage() { }
-
-export function setQuiz() {
-  
+export function setMessage(message) {
+  return {
+    type:types.SET_INFO_MESSAGE,
+    payload: message
+  }
 }
 
-export function inputChange() { }
+export function setQuiz() {
+  postQuiz()
+}
+
+export function inputChange({id, value}) {
+  return {
+    type: types.INPUT_CHANGE,
+    payload: {id, value}
+  }
+}
 
 export function resetForm() { }
 
@@ -40,7 +50,7 @@ export function fetchQuiz() {
        dispatch({type:types.SET_QUIZ_INTO_STATE, payload: res.data})
     })
     .catch(err =>{
-      
+      dispatch({type:types.SET_INFO_MESSAGE, payload: err.data.message})
     })
   }
   }
@@ -57,11 +67,11 @@ export function postAnswer(quizId, answerId) {
     .then(res =>{
       console.log("post message: ", res.data.message)
       dispatch({type:types.SET_SELECTED_ANSWER, payload: ""})
-      dispatch({type:types.SET_INFO_MESSAGE, payload: res.data.message})
+      dispatch(setMessage(res.data.message))
       dispatch(fetchQuiz())
     })
     .catch(err =>{
-      
+      dispatch({type:types.SET_INFO_MESSAGE, payload: err.data.message})
     })
   }
 }

@@ -3,9 +3,11 @@ import {connect} from 'react-redux'
 import * as actions from "../state/action-creators"
 
 export function Quiz(props) {
+  
   useEffect(() => {
-    fetchQuiz()
+    fetchQuiz()  
   }, [])
+
   const { selectAnswer, selectedAnswer, fetchQuiz, postAnswer, quiz } = props;
   
   console.log(props)
