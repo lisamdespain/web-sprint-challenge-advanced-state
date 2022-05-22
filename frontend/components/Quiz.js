@@ -4,18 +4,15 @@ import * as actions from "../state/action-creators"
 
 export function Quiz(props) {
   
+
+  const { selectAnswer, selectedAnswer, fetchQuiz, postAnswer, quiz, setQuiz } = props;
+
+  quiz.id === "" ? setQuiz(quiz) :
   useEffect(() => {
     fetchQuiz()  
   }, [])
-
-  const { selectAnswer, selectedAnswer, fetchQuiz, postAnswer, quiz } = props;
-  
-  console.log(props)
   return (
-    
-  
-    
-  
+ 
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."

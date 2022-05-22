@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import * as actions from "../state/action-creators"
 
 export function Wheel(props) {
-  console.log(props.state)
   const { moveClockwise, moveCounterClockwise, wheel } = props;
   return (
     

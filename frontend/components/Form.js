@@ -3,10 +3,8 @@ import { connect } from 'react-redux'
 import * as actionCreators from '../state/action-creators'
 
 export function Form(props) {
-  console.log(props)
  const {postQuiz, inputChange, form} = props;
   const onChange = evt => {
-    console.log(evt)
     const {id, value} = evt.target
     inputChange({ id, value }) 
   }
